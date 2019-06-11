@@ -28,5 +28,10 @@ namespace WinForm
         {
             _repository.SaveToDatabase();
         }
+
+        private void Btn_SaveToXML_Click(object sender, EventArgs e)
+        {
+            _repository.SaveToXML();
+        }
     }
 }

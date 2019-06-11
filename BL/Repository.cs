@@ -25,6 +25,10 @@ namespace BL
             DataSet.Tables[0].Columns[0].ReadOnly = true;
         }
 
+        public void SaveToXML()
+        {
+                DataSet.WriteXml("TestXML.xml");
+        }
         public void SaveToDatabase()
         {
             string sql = "SELECT * FROM Test";
