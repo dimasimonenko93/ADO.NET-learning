@@ -18,8 +18,29 @@ namespace BL
         {
             _database = new Connection();
             DataSet = new DataSet();
-            //DataSet = FillDataSet(_database.connectionString).Result;
+            
+            //DataSet = FillDataSetAsync(_database.connectionString).Result; // dont work !!!
+            FillDataSet();
 
+            DataSet.Tables[0].Columns[0].ReadOnly = true;
+        }
+
+        public void SaveToDatabase()
+        {
+            string sql = "SELECT * FROM Test";
+            using (SqlConnection connection = new SqlConnection(_database.connectionString))
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, connection);
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.Update(DataSet);
+                DataSet.Clear();
+                adapter.Fill(DataSet);
+            }
+        }
+
+        private void FillDataSet()
+        {
             string sql = "SELECT * FROM Test";  // what if table will be have spaces in it name ?
             using (SqlConnection connection = new SqlConnection(_database.connectionString))
             {
@@ -28,8 +49,7 @@ namespace BL
                 adapter.Fill(DataSet);
             }
         }
-
-        private async Task<DataSet> FillDataSet(string connectionString)
+        private async Task<DataSet> FillDataSetAsync(string connectionString)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

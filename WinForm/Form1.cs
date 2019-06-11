@@ -23,5 +23,10 @@ namespace WinForm
             dataGridView1.DataSource = _repository.DataSet.Tables[0];
 
         }
+
+        private void Btn_Save_Click(object sender, EventArgs e)
+        {
+            _repository.SaveToDatabase();
+        }
     }
 }
