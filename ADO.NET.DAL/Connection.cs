@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.Linq;
 
-namespace ADO.NET.DAL
+namespace SQLiteApp
 {
-    public class Connection
+    public class Connection : DataContext
     {
         public string connectionString { get; }
-        public Connection()
+        public Connection(string connection) : base(connection)
         {
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }

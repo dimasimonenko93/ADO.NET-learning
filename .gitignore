@@ -3,3 +3,9 @@ BL/obj/
 WinForm/bin/
 WinForm/obj/
 .vs/
+CalculatorWebApplication/bin/
+CalculatorWebApplication/obj/
+CalculatorWebApplication/Content/
+CalculatorWebApplication/fonts/
+CalculatorWebApplication/Scripts/
+packages/
